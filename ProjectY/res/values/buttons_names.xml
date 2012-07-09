@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="buttonTraining">Start Training</string>
+    <string name="buttonDairy">Training Dairy</string>
+    <string name="buttonEditWorout">Edit Workout</string>
+    <string name="buttonSettings">Settings</string>
     
 </resources>
