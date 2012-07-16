@@ -16,6 +16,7 @@ public class MainMenuActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
         Log.e("!!!!!","Hello Sasha!");
+        Log.e("!!!!!!!!!!", "Hello Dan!");
     }
 
 	public void onClick(View v) {
