@@ -54,12 +54,6 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		}
 		
 		String exersiceStr = "Short description of exercises";
-//		// writing all exercise's names in one string
-//		ArrayList<WorkoutExercise> exerciseArray = new ArrayList<WorkoutExercise>();
-//		tempDay.getListOfExercises(exerciseArray);
-//		for(int i = 0; i < exerciseArray.size(); i++) {
-//			exersiceStr += exerciseArray.get(i).getName() + "\n";
-//		}
 		TextView textDayEx = (TextView) convertView.findViewById(R.id.textDayExercises);
 		textDayEx.setText(exersiceStr);
 		return convertView;

@@ -24,6 +24,11 @@ public class ExerciseSet {
 	public void setWeight(float weight) {
 		this.weight = weight;
 	}
+
+	@Override
+	public String toString() {
+		return "" + amountOfRepeats + " x " + weight + " kg";
+	}
 	
 	
 

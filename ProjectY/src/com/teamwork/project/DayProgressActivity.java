@@ -20,23 +20,26 @@ public class DayProgressActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_day_progress);
 		plan = ((ProjectYApplication) getApplication()).trainingPlan;
-		
-		// getting array of exercises in selected day
-		Intent intent = getIntent();
-		int selectedSeries = intent.getIntExtra(selectedSeriesString, -1);
-		int selectedDay = intent.getIntExtra(selectedDayString, -1);
-		if (selectedSeries != -1) {
-			if (selectedDay != -1) {
-				selectedDayExercises = 
-					plan.getListOfSeries().get(selectedSeries).getListOfDays().get(selectedDay).getListOfExercises();
-			} else {
-				Log.e("error", "Error getting selected day from intent. DayProgressActivity");
+
+		if (plan != null) {
+			// getting array of exercises in selected day
+			Intent intent = getIntent();
+			int selectedSeries = intent.getIntExtra(selectedSeriesString, -1);
+			int selectedDay = intent.getIntExtra(selectedDayString, -1);
+			if (selectedSeries != -1) {
+				if (selectedDay != -1) {
+					selectedDayExercises = 
+						plan.getListOfSeries().get(selectedSeries).getListOfDays().get(selectedDay).getListOfExercises();
+				} else {
+					Log.e("error", "Error getting selected day from intent. DayProgressActivity");
+				}
+				Log.e("error", "Error getting selected series from intent. DayProgressActivity");
 			}
-			Log.e("error", "Error getting selected series from intent. DayProgressActivity");
+
+			dayListView = (ExpandableListView) findViewById(R.id.dayListView);
+		} else {
+			Log.e("error", "Error using WorkoutPlan: it is not created. DayProgressActivity");
 		}
-		
-		dayListView = (ExpandableListView) findViewById(R.id.dayListView);
-		
 
 	}
 
