@@ -1,12 +1,14 @@
 package com.teamwork.project;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 public class PlanListViewAdapter extends BaseExpandableListAdapter {
@@ -37,19 +39,27 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 			convertView = inflater.inflate(R.layout.workout_list_day, null);
 		}
 		
+		// getting requested day from plan
 		WorkoutDay tempDay = plan.getListOfSeries().get(seriesNo).getListOfDays().get(dayNo);
-		ArrayList<WorkoutExercise> exerciseArray = new ArrayList<WorkoutExercise>();
-		tempDay.getListOfExercises(exerciseArray);
+		
 		TextView textDayName = (TextView) convertView.findViewById(R.id.textDayName);
 		textDayName.setText(tempDay.getName());
 		
-//		String exersiceStr = new String();
+		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentSeries())){
+			CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBoxFinished);
+			checkBox.setChecked(true);
+			convertView.setBackgroundColor(Color.GRAY);
+		}
+		
+		String exersiceStr = "Short description of exercises";
 //		// writing all exercise's names in one string
+//		ArrayList<WorkoutExercise> exerciseArray = new ArrayList<WorkoutExercise>();
+//		tempDay.getListOfExercises(exerciseArray);
 //		for(int i = 0; i < exerciseArray.size(); i++) {
 //			exersiceStr += exerciseArray.get(i).getName() + "\n";
 //		}
-//		TextView textDayEx = (TextView) convertView.findViewById(R.id.textDayExercises);
-//		textDayEx.setText(exersiceStr);
+		TextView textDayEx = (TextView) convertView.findViewById(R.id.textDayExercises);
+		textDayEx.setText(exersiceStr);
 		return convertView;
 	}
 
@@ -86,8 +96,10 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		return false;
 	}
 
-	public boolean isChildSelectable(int sectionNo, int dayNo) {
+	public boolean isChildSelectable(int seriesNo, int dayNo) {
+		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentSeries())){
+			return false;
+		}
 		return true;
 	}
-
 }

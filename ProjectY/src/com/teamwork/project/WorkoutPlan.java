@@ -43,17 +43,18 @@ public class WorkoutPlan {
 	}
 	
 	/**
-	 * @return current day or -1 if there is no days were added
+	 * @return current series or -1 if there is no series were added
 	 */
 	public int getCurrentSeries() {
-		if (listOfSeries.isEmpty()) {
-			return -1;
-		}
 		return currentSeries;
 	}
 	
 	public void finishCurrentSeries() {
 		this.currentSeries++;
+	}
+	
+	public void finishCurrentDay() {
+		listOfSeries.get(currentSeries).finishCurrentDay();
 	}
 	
 	public int getCurrentDay() {

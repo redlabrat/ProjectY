@@ -2,6 +2,7 @@ package com.teamwork.project;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -46,7 +47,8 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 			}
 			plan.addSeries(tempSeries);
 		}
-		
+		plan.finishCurrentDay();
+		plan.finishCurrentDay();
 	}
 
 	/**
@@ -55,7 +57,14 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 	 */
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int sectionNo, int dayNo, long id) {
-		
+		Intent intent = new Intent(getApplicationContext(), DayProgressActivity.class);
+		startActivityForResult(intent, RESULT_OK);
 		return true;
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 }
