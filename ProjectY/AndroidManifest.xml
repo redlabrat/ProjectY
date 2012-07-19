@@ -39,6 +39,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+
+
+        
+		<activity
+            android:name=".db.TestActivity"
+            android:label="DB_TEST" >
+        </activity>
+        
+		
+		<activity
+            android:name=".db.ViewObjectActivity"
+            android:label="DB_VIEW" >
+        </activity>
+        
+		
+        </application>
 
 </manifest>
