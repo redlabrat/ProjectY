@@ -29,14 +29,23 @@ public class DayProgressActivity extends Activity {
 			if (selectedSeries != -1) {
 				if (selectedDay != -1) {
 					selectedDayExercises = 
-						plan.getListOfSeries().get(selectedSeries).getListOfDays().get(selectedDay).getListOfExercises();
+						plan.getListOfSeries().get(selectedSeries).getListOfDays().
+							get(selectedDay).getListOfExercises();
+//					Log.e("test", String.format("in selected day %d exercises", selectedDayExercises.size()));
 				} else {
-					Log.e("error", "Error getting selected day from intent. DayProgressActivity");
+					Log.e("error", String.format(
+							"Error getting selected day from intent: selectedDay = %d. DayProgressActivity", selectedDay));
 				}
-				Log.e("error", "Error getting selected series from intent. DayProgressActivity");
+			} else {
+				Log.e("error", String.format(
+						"Error getting selected series from intent: selectedSeries = %d. DayProgressActivity", selectedSeries));
 			}
 
 			dayListView = (ExpandableListView) findViewById(R.id.dayListView);
+			dayListView.setAdapter(new DayProgressListViewAdapter(getApplicationContext(), selectedDayExercises));
+			dayListView.expandGroup(
+					plan.getListOfSeries().get(selectedSeries).
+						getListOfDays().get(selectedDay).getCurrentExerciseNumber());
 		} else {
 			Log.e("error", "Error using WorkoutPlan: it is not created. DayProgressActivity");
 		}

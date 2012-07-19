@@ -38,15 +38,8 @@ public class DayProgressListViewAdapter extends BaseExpandableListAdapter {
 			convertView = inflater.inflate(R.layout.day_progress_sets, null);
 		}
 		
-		// writing all exercise's names in one string
-		String setsStr = new String();
-		ArrayList<ExerciseSet> plannedSetsArray = new ArrayList<ExerciseSet>();
-		array.get(exerciseNo).getPlannedSets(plannedSetsArray);
-		for(int i = 0; i < plannedSetsArray.size(); i++) {
-			setsStr += plannedSetsArray.get(i).toString() + "\n";
-		}
 		TextView textSets = (TextView) convertView.findViewById(R.id.textSets);
-		textSets.setText(setsStr);
+		textSets.setText(array.get(exerciseNo).getPlannedSets().get(setNo).toString());
 		
 		return convertView;
 	}
@@ -65,6 +58,7 @@ public class DayProgressListViewAdapter extends BaseExpandableListAdapter {
 
 	public View getGroupView(int exerciseNo, boolean isExpanded,
 			View convertView, ViewGroup parent) {
+		
 		if (convertView == null) {
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.day_progress_group, null);
@@ -82,8 +76,7 @@ public class DayProgressListViewAdapter extends BaseExpandableListAdapter {
 	}
 
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

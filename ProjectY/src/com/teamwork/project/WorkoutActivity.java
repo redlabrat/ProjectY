@@ -19,10 +19,12 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 		plan = ((ProjectYApplication) getApplication()).trainingPlan;
 		if (plan == null) {
 			emulateReadingPlanFromDB();
+			plan = ((ProjectYApplication) getApplication()).trainingPlan;
 		}
 		
 		planListView = (ExpandableListView) findViewById(R.id.planListView);
 		planListView.setAdapter(new PlanListViewAdapter(getApplicationContext(), plan));
+		// expanding current group
 		planListView.expandGroup(plan.getCurrentSeriesNumber());
 		planListView.setOnChildClickListener(this);
 	}
@@ -33,7 +35,8 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 		return true;
 	}
 
-	/** Fills global application WorkoutPlan object with random data
+	/** 
+	 * Fills global application WorkoutPlan object with random data
 	 * instead of this function should be some operation of reading data from DB
 	 * into global WorkoutPlan object as field of ProjectYApplication.
 	 */
@@ -57,6 +60,7 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 					tempExercise.setName(String.format("Exercise %d", i+1));
 					tempDay.addExercise(tempExercise);
 				}
+				tempDay.setDescription("Short description of exercises");
 				tempSeries.addDay(tempDay);
 			}
 			appState.trainingPlan.addSeries(tempSeries);

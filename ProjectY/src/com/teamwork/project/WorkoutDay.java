@@ -7,12 +7,14 @@ public class WorkoutDay {
 	private String name;
 	private ArrayList<WorkoutExercise> listOfExercises;
 	private int currentExercise;
+	private String description;
 
 	public WorkoutDay(String dayName) {
 		// for returning -1 when listOfExercises is empty
 		currentExercise = -1;
 		listOfExercises = new ArrayList<WorkoutExercise>();
 		name = dayName;
+		description = new String();
 	}
 
 	public String getName() {
@@ -55,6 +57,14 @@ public class WorkoutDay {
 			return listOfExercises.get(currentExercise);
 		}
 		return null;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

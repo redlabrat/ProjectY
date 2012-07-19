@@ -45,6 +45,7 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		textDayName.setText(tempDay.getName());
 		
 		CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBoxFinished);
+		// checking finished days and changing background color
 		if ((dayNo < plan.getCurrentDayNumber()) && (seriesNo <= plan.getCurrentSeriesNumber())){
 			checkBox.setChecked(true);
 			convertView.setBackgroundColor(Color.GRAY);
@@ -52,10 +53,8 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 			checkBox.setChecked(false);
 			convertView.setBackgroundColor(Color.TRANSPARENT);
 		}
-		
-		String exersiceStr = "Short description of exercises";
 		TextView textDayEx = (TextView) convertView.findViewById(R.id.textDayExercises);
-		textDayEx.setText(exersiceStr);
+		textDayEx.setText(tempDay.getDescription());
 		return convertView;
 	}
 

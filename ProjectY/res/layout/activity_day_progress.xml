@@ -9,7 +9,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" >
+        android:layout_marginTop="28dp" 
+        android:indicatorLeft="250dp"
+        android:indicatorRight="300dp" >
     </ExpandableListView>
 
 </RelativeLayout>
