@@ -41,10 +41,17 @@ public class WorkoutSeries {
 	/**
 	 * @return current day or -1 if there is no days were added
 	 */
-	public int getCurrentDay() {
+	public int getCurrentDayNumber() {
 		return currentDay;
 	}
 	
+	public WorkoutDay getCurrentDay() {
+		if (currentDay != -1) {
+			return listOfDays.get(currentDay);
+		}
+		return null;
+	}
+
 	public void finishCurrentDay() {
 		this.currentDay++;
 	}

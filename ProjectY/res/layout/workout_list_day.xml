@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@id/textDayName"
-        android:clickable="false" />
+        android:clickable="false" 
+        android:focusable="false"/>
 
     <TextView
         android:id="@+id/textDayExercises"

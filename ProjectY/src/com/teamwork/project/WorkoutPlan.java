@@ -42,13 +42,6 @@ public class WorkoutPlan {
 		this.listOfSeries = listOfSeries;
 	}
 	
-	/**
-	 * @return current series or -1 if there is no series were added
-	 */
-	public int getCurrentSeries() {
-		return currentSeries;
-	}
-	
 	public void finishCurrentSeries() {
 		this.currentSeries++;
 	}
@@ -57,15 +50,26 @@ public class WorkoutPlan {
 		listOfSeries.get(currentSeries).finishCurrentDay();
 	}
 	
-	public int getCurrentDay() {
-		return listOfSeries.get(currentSeries).getCurrentDay();
+	/**
+	 * @return current series or -1 if there is no series were added
+	 */
+	public int getCurrentSeriesNumber() {
+		return currentSeries;
 	}
 	
-	public int getCurrentExercise() {
-		int currDay = this.getCurrentDay();
-		ArrayList<WorkoutDay> currSeriesArray = new ArrayList<WorkoutDay>();
-		listOfSeries.get(currentSeries).getListOfDays(currSeriesArray);
-		return currSeriesArray.get(currDay).getCurrentExercise();
+	public int getCurrentDayNumber() {
+		return getCurrentSeries().getCurrentDayNumber();
+	}
+	
+	public int getCurrentExerciseNumber() {
+		return getCurrentSeries().getCurrentDay().getCurrentExerciseNumber();
+	}
+
+	public WorkoutSeries getCurrentSeries() {
+		if (currentSeries != -1) {
+			return listOfSeries.get(currentSeries);
+		}
+		return null;
 	}
 
 	@Override

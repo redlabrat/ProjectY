@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ExpandableListView;
+import static com.teamwork.project.Constants.*;
 
 public class WorkoutActivity extends Activity implements ExpandableListView.OnChildClickListener {
 	private ExpandableListView planListView = null;
@@ -23,7 +24,8 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 		
 		planListView = (ExpandableListView) findViewById(R.id.planListView);
 		planListView.setAdapter(new PlanListViewAdapter(getApplicationContext(), plan));
-		planListView.expandGroup(plan.getCurrentSeries());
+		planListView.expandGroup(plan.getCurrentSeriesNumber());
+		planListView.setOnChildClickListener(this);
 	}
 
 	@Override
@@ -32,6 +34,7 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 		return true;
 	}
 
+	// Fills field plan 
 	private void emulateReadingPlanFromDB() {
 		for(int k = 0; k < 2; k++) {
 			WorkoutSeries tempSeries = new WorkoutSeries(String.format("Series %d", k+1));
@@ -58,6 +61,8 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 	public boolean onChildClick(ExpandableListView parent, View v,
 			int sectionNo, int dayNo, long id) {
 		Intent intent = new Intent(getApplicationContext(), DayProgressActivity.class);
+		intent.putExtra(selectedSeriesString, sectionNo);
+		intent.putExtra(selectedDayString, dayNo);
 		startActivityForResult(intent, RESULT_OK);
 		return true;
 	}

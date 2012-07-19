@@ -41,9 +41,17 @@ public class WorkoutExercise {
 		outList.addAll(plannedSets);
 	}
 
+	public ArrayList<ExerciseSet> getPlannedSets() {
+		return plannedSets;
+	}
+
 	public void getExecutedSets(ArrayList<ExerciseSet> outList) {
 		outList.clear();
 		outList.addAll(executedSets);
+	}
+
+	public ArrayList<ExerciseSet> getExecutedSets() {
+		return executedSets;
 	}
 
 	@Override

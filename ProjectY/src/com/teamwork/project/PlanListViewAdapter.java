@@ -1,6 +1,5 @@
 package com.teamwork.project;
 
-//import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,8 +23,8 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		return plan.getListOfSeries().get(seriesNo).getListOfDays().get(dayNo);
 	}
 
-	public long getChildId(int groupPosition, int childPosition) {
-		return childPosition;
+	public long getChildId(int seriesNo, int dayNo) {
+		return dayNo;
 	}
 
 	public int getChildrenCount(int seriesNo) {
@@ -45,10 +44,13 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		TextView textDayName = (TextView) convertView.findViewById(R.id.textDayName);
 		textDayName.setText(tempDay.getName());
 		
-		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentSeries())){
-			CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBoxFinished);
+		CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBoxFinished);
+		if ((dayNo < plan.getCurrentDayNumber()) && (seriesNo <= plan.getCurrentSeriesNumber())){
 			checkBox.setChecked(true);
 			convertView.setBackgroundColor(Color.GRAY);
+		} else {
+			checkBox.setChecked(false);
+			convertView.setBackgroundColor(Color.TRANSPARENT);
 		}
 		
 		String exersiceStr = "Short description of exercises";
@@ -97,7 +99,7 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 	}
 
 	public boolean isChildSelectable(int seriesNo, int dayNo) {
-		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentSeries())){
+		if ((dayNo < plan.getCurrentDayNumber()) && (seriesNo <= plan.getCurrentSeriesNumber())){
 			return false;
 		}
 		return true;
