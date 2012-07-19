@@ -39,6 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
 
 
         
@@ -55,5 +56,8 @@
         
 		
         </application>
+=======
+    </application>
+>>>>>>> refs/heads/master
 
 </manifest>
