@@ -22,9 +22,20 @@ public class WorkoutPlan {
 		this.name = name;
 	}
 	
+	public ArrayList<WorkoutSeries> getListOfSeries() {
+		return listOfSeries;
+	}
+	
 	public void getListOfSeries(ArrayList<WorkoutSeries> outList) {
 		outList.clear();
 		outList.addAll(listOfSeries);
+	}
+	
+	public void addSeries(WorkoutSeries newSeries) {
+		listOfSeries.add(newSeries);
+		if (currentSeries == -1) {
+			currentSeries = 0;
+		}
 	}
 	
 	public void setListOfSeries(ArrayList<WorkoutSeries> listOfSeries) {
@@ -56,4 +67,9 @@ public class WorkoutPlan {
 		return currSeriesArray.get(currDay).getCurrentExercise();
 	}
 
+	@Override
+	public String toString() {
+		return "WorkoutPlan [name=" + name + ", listOfSeries=" + listOfSeries
+				+ ", currentSeries=" + currentSeries + "]";
+	}
 }

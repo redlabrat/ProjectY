@@ -4,13 +4,12 @@
     android:layout_height="match_parent" >
 
     <ExpandableListView
-        android:id="@+id/planListView"
+        android:id="@+id/expandableListView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp" 
-        android:indicatorLeft="250dp"
-        android:indicatorRight="300dp" >
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" >
     </ExpandableListView>
 
 </RelativeLayout>

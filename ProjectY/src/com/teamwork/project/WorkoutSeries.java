@@ -24,6 +24,13 @@ public class WorkoutSeries {
 	
 	public void addDay(WorkoutDay day){
 		listOfDays.add(day);
+		if (currentDay == -1) {
+			currentDay = 0;
+		}
+	}
+	
+	public ArrayList<WorkoutDay> getListOfDays() {
+		return listOfDays;
 	}
 	
 	public void getListOfDays(ArrayList<WorkoutDay> outList) {
@@ -40,5 +47,11 @@ public class WorkoutSeries {
 	
 	public void finishCurrentDay() {
 		this.currentDay++;
+	}
+
+	@Override
+	public String toString() {
+		return "WorkoutSeries [name=" + name + ", listOfDays=" + listOfDays
+				+ ", currentDay=" + currentDay + "]";
 	}
 }

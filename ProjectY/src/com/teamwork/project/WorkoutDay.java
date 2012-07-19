@@ -25,6 +25,9 @@ public class WorkoutDay {
 	
 	public void addExercise(WorkoutExercise exercise) {
 		listOfExercises.add(exercise);
+		if (currentExercise == -1) {
+			currentExercise = 0;
+		}
 	}
 	
 	public void getListOfExercises(ArrayList<WorkoutExercise> outList) {
@@ -41,5 +44,12 @@ public class WorkoutDay {
 	 */
 	public int getCurrentExercise() {
 		return currentExercise;
+	}
+
+	@Override
+	public String toString() {
+		return "WorkoutDay [name=" + name + ", listOfExercises="
+				+ listOfExercises + ", currentExercise=" + currentExercise
+				+ "]";
 	}
 }

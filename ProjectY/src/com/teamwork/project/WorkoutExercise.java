@@ -45,4 +45,10 @@ public class WorkoutExercise {
 		outList.clear();
 		outList.addAll(executedSets);
 	}
+
+	@Override
+	public String toString() {
+		return "WorkoutExercise [plannedSets=" + plannedSets
+				+ ", executedSets=" + executedSets + ", name=" + name + "]";
+	}
 }
