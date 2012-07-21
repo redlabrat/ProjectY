@@ -7,7 +7,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_workout_exercise")
-public class WorkoutExercise {
+public class WorkoutExercise  implements PersistentObject {
 
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_ID_DICT = "in_dictionary";

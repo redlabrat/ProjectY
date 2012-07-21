@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_workout_day")
-public class WorkoutDay {
+public class WorkoutDay implements PersistentObject{
 
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME = "name";

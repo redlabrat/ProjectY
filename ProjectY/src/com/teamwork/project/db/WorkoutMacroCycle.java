@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_macro_cycle")
-public class WorkoutMacroCycle {
+public class WorkoutMacroCycle  implements PersistentObject {
 	
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME = "name";

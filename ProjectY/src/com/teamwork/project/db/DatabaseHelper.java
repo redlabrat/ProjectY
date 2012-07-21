@@ -6,7 +6,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.j256.ormlite.android.AndroidConnectionSource;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
@@ -31,19 +30,15 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	private RuntimeExceptionDao<WorkoutExercise, Integer> workoutExerciseDao = null;
 	private RuntimeExceptionDao<WorkoutMicroCycle, Integer> workoutMicroCycleDao = null;
 	private RuntimeExceptionDao<WorkoutMacroCycle, Integer> workoutMacroCycleDao = null;
+	private RuntimeExceptionDao<DiaryEntry, Integer> diaryEntryDao = null;
 	
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION, R.raw.ormlite_config);
-		connectionSource = (AndroidConnectionSource) getConnectionSource();
-	
+		Log.e(LOG_TAG,"Create DatabaseHelper");
 	}
 
 
-	/**
-	 * This is called when the database is first created.
-	 * Usually you should call createTable statements here to create
-	 * the tables that will store your data.
-	 */
+
 	@Override
 	public void onCreate(SQLiteDatabase db, ConnectionSource connectionSource) {
 		Log.e(LOG_TAG, "onCreate");
@@ -54,6 +49,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.createTable(connectionSource, ExerciseSet.class);
 			TableUtils.createTable(connectionSource, WorkoutMicroCycle.class);
 			TableUtils.createTable(connectionSource, WorkoutMacroCycle.class);
+			TableUtils.createTable(connectionSource, DiaryEntry.class);
 		} catch (SQLException e) {
 			Log.e(LOG_TAG, "Can't create database", e);
 			throw new RuntimeException(e);
@@ -67,6 +63,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		RuntimeExceptionDao<WorkoutDay, Integer> dao4 = getWorkoutDayDao();
 		RuntimeExceptionDao<WorkoutMicroCycle, Integer> dao5 = getWorkoutMicroCycleDao();
 		RuntimeExceptionDao<WorkoutMacroCycle, Integer> dao6 = getWorkoutMacroCycleDao();
+		RuntimeExceptionDao<DiaryEntry, Integer> dao7 = getDiaryEntryDao();
 		Log.e(LOG_TAG, "YES0");
 		
 		// create some entries in the onCreate
@@ -118,6 +115,16 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		macro.addMicroCycle(micro);
 		dao6.update(macro);
 		Log.e(LOG_TAG, "YES8");
+		
+		
+		DiaryEntry de1 = new DiaryEntry(wex1.getId());
+		dao7.create(de1);
+		
+		DiaryEntry de2 = new DiaryEntry(wex2.getId());
+		dao7.create(de2);
+		Log.e(LOG_TAG, "YES9");
+		
+		
 
 //		dao1.create(new ExerciseSet(5, 100, we));
 //		dao1.create(new ExerciseSet(8, 200, we));
@@ -133,6 +140,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 			TableUtils.dropTable(connectionSource, WorkoutDay.class, true);
 			TableUtils.dropTable(connectionSource, WorkoutMicroCycle.class, true);
 			TableUtils.dropTable(connectionSource, WorkoutMacroCycle.class, true);
+			TableUtils.dropTable(connectionSource, DiaryEntry.class, true);
 			// after we drop the old databases, we create the new ones
 			onCreate(db, connectionSource);
 		} catch (SQLException e) {
@@ -187,6 +195,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		return workoutMacroCycleDao;
 	}
 
+	public RuntimeExceptionDao<DiaryEntry, Integer> getDiaryEntryDao() {
+		if (diaryEntryDao == null) {
+			diaryEntryDao = getRuntimeExceptionDao(DiaryEntry.class);
+		}
+		return diaryEntryDao;
+	}
+	
 
 	@Override
 	public void close() {
@@ -196,5 +211,8 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 		workoutExerciseDao = null;
 		workoutDayDao = null;
 		workoutMicroCycleDao = null;
+		workoutMacroCycleDao = null;
+		diaryEntryDao = null;
+		Log.e(LOG_TAG,"DatabaseHelper Closed");
 	}
 }

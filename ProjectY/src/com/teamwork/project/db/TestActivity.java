@@ -2,6 +2,7 @@ package com.teamwork.project.db;
 
 import java.util.ArrayList;
 
+import com.teamwork.project.ProjectYApplication;
 import com.teamwork.project.R;
 
 import android.app.Activity;
@@ -18,16 +19,17 @@ import android.widget.AdapterView.OnItemClickListener;
 public class TestActivity extends Activity {
     
 //	private SQLiteDatabase database;
-	private DatabaseHelper helper;
+	private DatabaseHelper dataSource;
 	private ListView listView;
-	private ArrayList<WorkoutMacroCycle> objects;
+	private ArrayList<DiaryEntry> objects;
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.db_activity_test);
         
-        helper = new DatabaseHelper(this);
+        dataSource = ProjectYApplication.getDataSource();
         
         fillObjects();
         setUpList();
@@ -39,7 +41,7 @@ public class TestActivity extends Activity {
 		listView = (ListView) findViewById(R.id.DBTestActivityMainList);
 		
 		
-		listView.setAdapter(new ArrayAdapter<WorkoutMacroCycle>(this,
+		listView.setAdapter(new ArrayAdapter<DiaryEntry>(this,
 						android.R.layout.simple_list_item_1, objects));
 		
 		// Make Some Toast
@@ -52,6 +54,6 @@ public class TestActivity extends Activity {
 
 	// retrive data from DB
 	private void fillObjects() {
-		objects = (ArrayList<WorkoutMacroCycle>) helper.getWorkoutMacroCycleDao().queryForAll();
+		objects = (ArrayList<DiaryEntry>) dataSource.getDiaryEntryDao().queryForAll();
 	}
 }
