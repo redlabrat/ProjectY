@@ -2,6 +2,9 @@ package com.teamwork.project;
 
 //import java.util.ArrayList;
 
+import com.teamwork.project.db.WorkoutDay;
+import com.teamwork.project.db.WorkoutMacroCycle;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -13,15 +16,15 @@ import android.widget.TextView;
 
 public class PlanListViewAdapter extends BaseExpandableListAdapter {
 	private Context context = null;
-	private WorkoutPlan plan = null;
+	private WorkoutMacroCycle plan = null;
 	
-	public PlanListViewAdapter(Context context, WorkoutPlan planToShow) {
+	public PlanListViewAdapter(Context context, WorkoutMacroCycle planToShow) {
 		this.context = context;
 		plan = planToShow;
 	}
 
 	public Object getChild(int seriesNo, int dayNo) {
-		return plan.getListOfSeries().get(seriesNo).getListOfDays().get(dayNo);
+		return plan.getListMicroCycles().get(seriesNo).getListOfDays().get(dayNo);
 	}
 
 	public long getChildId(int groupPosition, int childPosition) {
@@ -29,7 +32,7 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 	}
 
 	public int getChildrenCount(int seriesNo) {
-		return plan.getListOfSeries().get(seriesNo).getListOfDays().size();
+		return plan.getListMicroCycles().get(seriesNo).getListOfDays().size();
 	}
 
 	public View getChildView(int seriesNo, int dayNo,
@@ -40,12 +43,12 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		}
 		
 		// getting requested day from plan
-		WorkoutDay tempDay = plan.getListOfSeries().get(seriesNo).getListOfDays().get(dayNo);
+		WorkoutDay tempDay = plan.getListMicroCycles().get(seriesNo).getListOfDays().get(dayNo);
 		
 		TextView textDayName = (TextView) convertView.findViewById(R.id.textDayName);
 		textDayName.setText(tempDay.getName());
 		
-		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentSeries())){
+		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentMicroCycle())){
 			CheckBox checkBox = (CheckBox) convertView.findViewById(R.id.checkBoxFinished);
 			checkBox.setChecked(true);
 			convertView.setBackgroundColor(Color.GRAY);
@@ -74,17 +77,17 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 		}
 		
 		TextView textName = (TextView) convertView.findViewById(R.id.textGroupName);
-		textName.setText(plan.getListOfSeries().get(seriesNo).getName());
+		textName.setText(plan.getListMicroCycles().get(seriesNo).getName());
 		
 		return convertView;
 	}
 
 	public Object getGroup(int seriesNo) {
-		return plan.getListOfSeries().get(seriesNo);
+		return plan.getListMicroCycles().get(seriesNo);
 	}
 
 	public int getGroupCount() {
-		return plan.getListOfSeries().size();
+		return plan.getListMicroCycles().size();
 	}
 
 	public long getGroupId(int seriesNo) {
@@ -97,7 +100,7 @@ public class PlanListViewAdapter extends BaseExpandableListAdapter {
 	}
 
 	public boolean isChildSelectable(int seriesNo, int dayNo) {
-		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentSeries())){
+		if ((dayNo < plan.getCurrentDay()) && (seriesNo <= plan.getCurrentMicroCycle())){
 			return false;
 		}
 		return true;

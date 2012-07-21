@@ -1,5 +1,10 @@
 package com.teamwork.project;
 
+import com.teamwork.project.db.WorkoutDay;
+import com.teamwork.project.db.WorkoutExercise;
+import com.teamwork.project.db.WorkoutMacroCycle;
+import com.teamwork.project.db.WorkoutMicroCycle;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,7 +14,7 @@ import android.widget.ExpandableListView;
 
 public class WorkoutActivity extends Activity implements ExpandableListView.OnChildClickListener {
 	private ExpandableListView planListView = null;
-	private WorkoutPlan plan = null;
+	private WorkoutMacroCycle plan = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -17,13 +22,13 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 		setContentView(R.layout.activity_workout);
 		plan = ((ProjectYApplication) getApplication()).trainingPlan;
 		if (plan == null) {
-			plan = new WorkoutPlan();
+			plan = new WorkoutMacroCycle();
 			emulateReadingPlanFromDB();
 		}
 		
 		planListView = (ExpandableListView) findViewById(R.id.planListView);
 		planListView.setAdapter(new PlanListViewAdapter(getApplicationContext(), plan));
-		planListView.expandGroup(plan.getCurrentSeries());
+		planListView.expandGroup(plan.getCurrentMicroCycle());
 	}
 
 	@Override
@@ -34,7 +39,7 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 
 	private void emulateReadingPlanFromDB() {
 		for(int k = 0; k < 2; k++) {
-			WorkoutSeries tempSeries = new WorkoutSeries(String.format("Series %d", k+1));
+			WorkoutMicroCycle tempSeries = new WorkoutMicroCycle(String.format("Series %d", k+1));
 			for(int j = 0; j < 5; j++) {
 				WorkoutDay tempDay = new WorkoutDay(String.format("Day %d", j+1));
 				for(int i = 0; i < 4; i++) {
@@ -45,7 +50,7 @@ public class WorkoutActivity extends Activity implements ExpandableListView.OnCh
 				}
 				tempSeries.addDay(tempDay);
 			}
-			plan.addSeries(tempSeries);
+			plan.addMicroCycle(tempSeries);
 		}
 		plan.finishCurrentDay();
 		plan.finishCurrentDay();

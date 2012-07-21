@@ -1,43 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/DbTestActivityMainLinear"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <ListView
-        android:id="@+id/DbTestActivityListObjects"
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="0.1" >
-    </ListView>
-
-    <LinearLayout
-        android:id="@+id/DbTestActivityMainButtonLinear"
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal" >
+        android:text="Hello" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:onClick="addObjectToDB"
-            android:text="Add New">
-            
-        </Button>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:onClick="deleteObjectFromDB"
-            android:text="Delete">
-        </Button>
-
-    </LinearLayout>
+    <ListView
+        android:id="@+id/DBTestActivityMainList"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </ListView>
 
 </LinearLayout>
