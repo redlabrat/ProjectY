@@ -1,22 +1,22 @@
-package com.teamwork.project.db;
+package com.teamwork.project.data;
 
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_exercise_set")
-public class ExerciseSet {
+public class ExerciseSet extends PersistentObject {
 
 	public static final String COLUMN_ID = "_id";
-	public static final String COLUMN_WORKOUT_EXERCISE_ID = "workout_exercise_id";
+	public static final String COLUMN_PARENT_EXERCISE_ID = "parent_exercise_id";
 	public static final String COLUMN_REPS = "reps_amount";
 	public static final String COLUMN_WEIGHT = "weight";
 	
 	@DatabaseField(generatedId = true, columnName = COLUMN_ID)
 	public Integer id;
 	
-	@DatabaseField(columnName = COLUMN_WORKOUT_EXERCISE_ID,canBeNull = false)
-	private Integer idWorkoutExercise;
+	@DatabaseField(columnName = COLUMN_PARENT_EXERCISE_ID,canBeNull = false)
+	private Integer idParentExercise;
 	
 	@DatabaseField(columnName = COLUMN_REPS)
 	private Integer amountOfRepeats;
@@ -29,10 +29,10 @@ public class ExerciseSet {
 		// needed by ormlite
 	}
 	
-	public ExerciseSet(int reps, float weight, WorkoutExercise we) {
+	public ExerciseSet(int reps, float weight, PersistentObject parent) {
 		amountOfRepeats = reps;
 		this.weight = weight;
-		this.idWorkoutExercise = we.getId();
+		this.idParentExercise = parent.getId();
 	}
 	
 	public Integer getId() {
@@ -59,6 +59,8 @@ public class ExerciseSet {
 	public void setWeight(float weight) {
 		this.weight = weight;
 	}
+	
+
 	
 	@Override
 	public String toString() {

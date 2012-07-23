@@ -1,10 +1,10 @@
-package com.teamwork.project.db;
+package com.teamwork.project.data;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_dicionary_exercise")
-public class DictionaryExercise {
+public class DictionaryExercise extends PersistentObject{
 	
 	
 	
@@ -58,7 +58,7 @@ public class DictionaryExercise {
 		this.description = descr;
 	}
 	
-	
+
 	
 	@Override
 	public String toString() {

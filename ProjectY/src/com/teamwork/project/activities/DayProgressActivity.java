@@ -1,4 +1,8 @@
-package com.teamwork.project;
+package com.teamwork.project.activities;
+
+import com.teamwork.project.R;
+import com.teamwork.project.R.layout;
+import com.teamwork.project.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;

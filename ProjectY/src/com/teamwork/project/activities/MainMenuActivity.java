@@ -1,4 +1,8 @@
-package com.teamwork.project;
+package com.teamwork.project.activities;
+
+import com.teamwork.project.R;
+import com.teamwork.project.R.id;
+import com.teamwork.project.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

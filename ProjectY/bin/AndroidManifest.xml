@@ -15,38 +15,32 @@
         
         
         <activity
-            android:name=".MainMenuActivity"
+            android:name=".activities.MainMenuActivity"
             android:label="@string/app_name" >
         </activity>
         
         
         <activity
-            android:name=".WorkoutActivity"
+            android:name=".activities.WorkoutActivity"
             android:label="@string/title_activity_workout" >
         </activity>
         
         
         
         <activity
-            android:name=".DayProgressActivity"
+            android:name=".activities.DayProgressActivity"
             android:label="@string/title_activity_day_progress" >
         </activity>
         
         
         
         <activity
-            android:name=".db.TestActivity"
+            android:name=".data.TestActivity"
             android:label="DB_TEST" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        
-        
-        <activity
-            android:name=".db.ViewObjectActivity"
-            android:label="DB_VIEW" >
         </activity>
         
         

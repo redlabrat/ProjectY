@@ -1,4 +1,4 @@
-package com.teamwork.project.db;
+package com.teamwork.project.data;
 
 import java.io.IOException;
 import java.sql.SQLException;

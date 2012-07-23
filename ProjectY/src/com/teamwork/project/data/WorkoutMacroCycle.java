@@ -1,4 +1,4 @@
-package com.teamwork.project.db;
+package com.teamwork.project.data;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_macro_cycle")
-public class WorkoutMacroCycle  implements PersistentObject {
+public class WorkoutMacroCycle extends PersistentObject  {
 	
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME = "name";
@@ -90,6 +90,9 @@ public class WorkoutMacroCycle  implements PersistentObject {
 		return currSeriesArray.get(currDay).getCurrentExercise();
 	}
 
+
+
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

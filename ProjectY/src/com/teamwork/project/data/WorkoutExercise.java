@@ -1,4 +1,4 @@
-package com.teamwork.project.db;
+package com.teamwork.project.data;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_workout_exercise")
-public class WorkoutExercise  implements PersistentObject {
+public class WorkoutExercise extends PersistentObject {
 
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_ID_DICT = "in_dictionary";
@@ -20,7 +20,7 @@ public class WorkoutExercise  implements PersistentObject {
 	public Integer id;
 
 	@DatabaseField(columnName = COLUMN_ID_DICT, canBeNull = false)
-	public Integer idInDictioanry;
+	public Integer idDictionaryExercise;
 
 	@DatabaseField(columnName = COLUMN_ID_DAY, canBeNull = false)
 	public Integer idWorkoutDay;
@@ -41,8 +41,8 @@ public class WorkoutExercise  implements PersistentObject {
 
 	}
 
-	public WorkoutExercise(Integer inDictionaryId,Integer workoutDayId) {
-		this.idInDictioanry = inDictionaryId;
+	public WorkoutExercise(Integer dictExerciseId,Integer workoutDayId) {
+		this.idDictionaryExercise = dictExerciseId;
 		this.idWorkoutDay = workoutDayId;
 		plannedSets = new ArrayList<ExerciseSet>();
 		executedSets = new ArrayList<ExerciseSet>();
@@ -50,6 +50,10 @@ public class WorkoutExercise  implements PersistentObject {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public Integer getDictionaryExerciseId() {
+		return idDictionaryExercise;
 	}
 
 	public String getName() {
@@ -76,6 +80,19 @@ public class WorkoutExercise  implements PersistentObject {
 	public String getExecuted() {
 		return this.executed;
 	} 
+	
+	
+	public Integer getWorkoutDayId() {
+		return idWorkoutDay;
+	}
+
+	public void setWorkoutDayId(Integer workoutDayId) {
+		this.idWorkoutDay = workoutDayId ;
+	}
+
+	
+	
+	
 
 
 	// This method builds collections
@@ -136,11 +153,14 @@ public class WorkoutExercise  implements PersistentObject {
 		//		outList.addAll(executedSets);
 	}
 
+
+	
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("W_EX: id=").append(id);
-		sb.append(", ").append("dict=").append(idInDictioanry);
+		sb.append(", ").append("dict=").append(idDictionaryExercise);
 		sb.append(", ").append("day=").append(idWorkoutDay);
 		sb.append(", ").append("plan=").append(planned);
 		sb.append(", ").append("exec=").append(executed);

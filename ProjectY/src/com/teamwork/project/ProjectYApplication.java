@@ -1,7 +1,7 @@
 package com.teamwork.project;
 
-import com.teamwork.project.db.DatabaseHelper;
-import com.teamwork.project.db.WorkoutMacroCycle;
+import com.teamwork.project.data.DatabaseHelper;
+import com.teamwork.project.data.WorkoutMacroCycle;
 
 import android.app.Application;
 import android.util.Log;
@@ -16,6 +16,7 @@ public class ProjectYApplication extends Application {
 	public void onCreate (){
 		Log.e("!!!","ProjectYApplication CREATED");
 		dataSource = new DatabaseHelper(this);
+		Log.e("!!!","DataSource CREATED");
 	}
 	
 	

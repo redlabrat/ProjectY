@@ -1,4 +1,4 @@
-package com.teamwork.project.db;
+package com.teamwork.project.data;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "tbl_workout_day")
-public class WorkoutDay implements PersistentObject{
+public class WorkoutDay extends PersistentObject {
 
 	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME = "name";
@@ -73,9 +73,8 @@ public class WorkoutDay implements PersistentObject{
 		}
 	}
 	
-	public void getListOfExercises(ArrayList<WorkoutExercise> outList) {
-		outList.clear();
-		outList.addAll(listOfExercises);
+	public ArrayList<WorkoutExercise> getListOfExercises() {
+		return listOfExercises;
 	}
 
 	public void finishCurrentExercise() {
@@ -88,6 +87,7 @@ public class WorkoutDay implements PersistentObject{
 	public int getCurrentExercise() {
 		return currentExercise;
 	}
+	
 
 	@Override
 	public String toString() {

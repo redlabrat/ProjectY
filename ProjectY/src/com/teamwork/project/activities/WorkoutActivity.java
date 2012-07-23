@@ -1,9 +1,14 @@
-package com.teamwork.project;
+package com.teamwork.project.activities;
 
-import com.teamwork.project.db.WorkoutDay;
-import com.teamwork.project.db.WorkoutExercise;
-import com.teamwork.project.db.WorkoutMacroCycle;
-import com.teamwork.project.db.WorkoutMicroCycle;
+import com.teamwork.project.ProjectYApplication;
+import com.teamwork.project.R;
+import com.teamwork.project.R.id;
+import com.teamwork.project.R.layout;
+import com.teamwork.project.R.menu;
+import com.teamwork.project.data.WorkoutDay;
+import com.teamwork.project.data.WorkoutExercise;
+import com.teamwork.project.data.WorkoutMacroCycle;
+import com.teamwork.project.data.WorkoutMicroCycle;
 
 import android.os.Bundle;
 import android.app.Activity;

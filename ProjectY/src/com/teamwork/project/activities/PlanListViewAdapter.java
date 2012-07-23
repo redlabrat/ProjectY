@@ -1,9 +1,12 @@
-package com.teamwork.project;
+package com.teamwork.project.activities;
 
 //import java.util.ArrayList;
 
-import com.teamwork.project.db.WorkoutDay;
-import com.teamwork.project.db.WorkoutMacroCycle;
+import com.teamwork.project.R;
+import com.teamwork.project.R.id;
+import com.teamwork.project.R.layout;
+import com.teamwork.project.data.WorkoutDay;
+import com.teamwork.project.data.WorkoutMacroCycle;
 
 import android.content.Context;
 import android.graphics.Color;
